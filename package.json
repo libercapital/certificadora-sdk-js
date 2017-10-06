@@ -1,0 +1,33 @@
+{
+    "name": "libersdk-js",
+    "version": "0.1.1",
+    "description": "Liber Certificadora",
+    "main": "build/libersdk.min.js",
+    "scripts": {
+        "build": "rollup -c",
+        "dev": "rollup -c --watch",
+        "prod": "NODE_ENV=production rollup -c",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+ssh://git@gitlab.com:libercapital/certificadora-sdk-js.git"
+    },
+    "devDependencies": {
+        "babel-core": "^6.26.0",
+        "babel-plugin-external-helpers": "^6.22.0",
+        "babel-preset-latest": "^6.24.1",
+        "npm-run-all": "^4.1.1",
+        "rollup-plugin-babel": "^3.0.2",
+        "rollup-plugin-commonjs": "^8.2.1",
+        "rollup-plugin-eslint": "^4.0.0",
+        "rollup-plugin-json": "^2.3.0",
+        "rollup-plugin-node-resolve": "^3.0.0",
+        "rollup-plugin-replace": "^2.0.0",
+        "rollup-plugin-uglify": "^2.0.1"
+    },
+    "dependencies": {
+        "bowser": "^1.7.3",
+        "promise": "^8.0.1"
+    }
+}
