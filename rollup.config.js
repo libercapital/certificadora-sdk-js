@@ -11,11 +11,11 @@ export default {
     input: 'src/main.js',
     output: [
         {
-            file: 'build/libersdk.min.js',
+            file: 'build/assiname-sdk.min.js',
             format: 'iife',
-            name: 'LiberSDK',
+            name: 'AssinaMeSDK',
             sourcemap: 'inline',
-            banner: '/* libersdk-js v' + version + '*/'
+            banner: '/* assiname-sdk-js v' + version + '*/'
         }
     ],
     plugins: [

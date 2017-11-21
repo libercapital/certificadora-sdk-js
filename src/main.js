@@ -12,7 +12,7 @@
 import Utils from './utils.js';
 import Support from './support.js';
 
-var Liber = (function (Utils, Support) {
+var SDK = (function (Utils, Support) {
     'use strict';
 
     var _ = {
@@ -49,7 +49,7 @@ var Liber = (function (Utils, Support) {
     _.systemCheck = function (timeout) {
         return new Promise(function (resolve, reject) {
             // check if extension's library is registered on global scope
-            if (typeof window.LiberCapitalCertificadora === 'undefined') {
+            if (typeof window.AssinaMeExtension === 'undefined') {
                 hasExtension = false;
                 status = _.STATES.EXTENSION_MISSING;
                 reject(new Error('Extension is missing'));
@@ -58,7 +58,7 @@ var Liber = (function (Utils, Support) {
             }
 
             // check if library's major version is at least 0
-            if (window.LiberCapitalCertificadora.version.MAJOR < 0) {
+            if (window.AssinaMeExtension.version.MAJOR < 0) {
                 hasExtension = true;
                 status = _.STATES.EXTENSION_MAJOR;
                 reject(new Error('Extension major version is not supported'));
@@ -67,7 +67,7 @@ var Liber = (function (Utils, Support) {
             }
 
             // check if library's minor version is at least 1
-            if (window.LiberCapitalCertificadora.version.MINOR < 1) {
+            if (window.AssinaMeExtension.version.MINOR < 1) {
                 hasExtension = true;
                 status = _.STATES.EXTENSION_MINOR;
                 reject(new Error('Extension minor version is not supported'));
@@ -75,11 +75,11 @@ var Liber = (function (Utils, Support) {
                 return;
             }
 
-            // add LiberCapitalCertificadora to _ scope
-            _ = Object.assign(_, window.LiberCapitalCertificadora);
+            // add AssinaMeExtension to _ scope
+            _ = Object.assign(_, window.AssinaMeExtension);
 
             // check if native app is installed and version requirements
-            window.LiberCapitalCertificadora.nativeVersion(timeout).then(
+            window.AssinaMeExtension.nativeVersion(timeout).then(
                 function (response) {
                     hasNative = true;
                     // check if native's major version is at least 0
@@ -118,4 +118,4 @@ var Liber = (function (Utils, Support) {
     return _;
 }(Utils, new Support(Utils.currentBrowser(), Utils.currentOS())));
 
-export default Liber;
+export default SDK;
