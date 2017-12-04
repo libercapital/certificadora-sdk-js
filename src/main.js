@@ -32,7 +32,8 @@ var SDK = (function (Utils, Support) {
         },
         status       = _.STATES.IDLE,
         hasExtension = false,
-        hasNative    = false;
+        hasNative    = false,
+        isExtended   = false;
 
     _.status = function () {
         return status;
@@ -46,7 +47,7 @@ var SDK = (function (Utils, Support) {
         return hasNative;
     };
 
-    _.systemCheck = function (timeout) {
+    _.extensionCheck = function () {
         return new Promise(function (resolve, reject) {
             // check if extension's library is registered on global scope
             if (typeof window.AssinaMeExtension === 'undefined') {
@@ -75,8 +76,26 @@ var SDK = (function (Utils, Support) {
                 return;
             }
 
-            // add AssinaMeExtension to _ scope
-            _ = Object.assign(_, window.AssinaMeExtension);
+            if (! isExtended) {
+                isExtended = true;
+
+                // add AssinaMeExtension to _ scope
+                _ = Object.assign(_, window.AssinaMeExtension);
+            }
+
+            resolve(_.version.MAJOR + '.' + _.version.MINOR);
+        });
+    };
+
+    _.nativeCheck = function (timeout) {
+        return new Promise(function (resolve, reject) {
+            if (typeof window.AssinaMeExtension === 'undefined') {
+                hasExtension = false;
+                status = _.STATES.EXTENSION_MISSING;
+                reject(new Error('Extension is missing'));
+
+                return;
+            }
 
             // check if native app is installed and version requirements
             window.AssinaMeExtension.nativeVersion(timeout).then(
@@ -99,12 +118,7 @@ var SDK = (function (Utils, Support) {
                     }
 
                     status = _.STATES.READY;
-                    resolve(
-                        {
-                            extension: _.version.MAJOR + '.' + _.version.MINOR,
-                            native: response.MAJOR + '.' + response.MINOR
-                        }
-                    );
+                    resolve(response.MAJOR + '.' + response.MINOR);
                 },
                 function () {
                     hasNative = false;
@@ -113,6 +127,10 @@ var SDK = (function (Utils, Support) {
                 }
             );
         });
+    };
+
+    _.systemCheck = function (timeout) {
+        return Promise.all([_.extensionCheck(), _.nativeCheck(timeout)]);
     };
 
     return _;
