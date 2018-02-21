@@ -1,106 +1,141 @@
 import * as bowserjs from '../node_modules/bowser/bowser.js';
 
 var Utils = (function (bowser) {
-    'use strict';
+  'use strict';
 
-    var _ = {};
+  var _ = {};
 
-    _.currentOS = function () {
-        if (bowser.mac) {
-            return 'mac';
-        }
+  _.currentPlatform = function () {
+    if (bowser.mobile) {
+      return 'mobile';
+    }
 
-        if (bowser.windows) {
-            return 'windows';
-        }
+    if (bowser.tablet) {
+      return 'tablet';
+    }
 
-        if (bowser.linux) {
-            return 'linux';
-        }
+    return 'computer';
+  };
 
-        return 'unknown';
-    };
+  _.platformDisplayName = function (platformName) {
+    platformName = platformName || _.currentPlatform();
 
-    _.osDisplayName = function (OSName) {
-        OSName = OSName || _.currentOS();
+    switch (platformName) {
+      case 'mobile':
+        return 'Mobile';
+      case 'tablet':
+        return 'Tablet';
+      case 'computer':
+        return 'Computer';
+      default:
+        return 'Unknown';
+    }
+  };
 
-        switch (OSName) {
-            case 'windows':
-                return 'Microsoft Windows';
-            case 'mac':
-                return 'macOS';
-            case 'linux':
-                return 'Linux';
-            default:
-                return 'Unknown';
-        }
-    };
+  _.currentOS = function () {
+    if (bowser.mac) {
+      return 'mac';
+    }
 
-    _.currentBrowser = function () {
-        if (bowser.chrome) {
-            return 'chrome';
-        }
+    if (bowser.windows) {
+      return 'windows';
+    }
 
-        if (bowser.firefox) {
-            return 'firefox';
-        }
+    if (bowser.linux) {
+      return 'linux';
+    }
 
-        if (bowser.msedge) {
-            return 'edge';
-        }
+    return 'unknown';
+  };
 
-        return 'unknown';
-    };
+  _.osDisplayName = function (OSName) {
+    OSName = OSName || _.currentOS();
 
-    _.browserDisplayName = function (browserName) {
-        browserName = browserName || _.currentBrowser();
+    switch (OSName) {
+      case 'windows':
+        return 'Microsoft Windows';
+      case 'mac':
+        return 'macOS';
+      case 'linux':
+        return 'Linux';
+      default:
+        return 'Unknown';
+    }
+  };
 
-        switch (browserName) {
-            case 'chrome':
-                return 'Google Chrome';
-            case 'firefox':
-                return 'Mozilla Firefox';
-            default:
-                return 'Unknown';
-        }
-    };
+  _.currentBrowser = function () {
+    if (bowser.chrome) {
+      return 'chrome';
+    }
 
-    _.extensionPage = function (browserName) {
-        browserName = browserName || _.currentBrowser();
+    if (bowser.firefox) {
+      return 'firefox';
+    }
 
-        switch (browserName) {
-            case 'chrome':
-                return 'chrome://extensions';
-            case 'firefox':
-                return 'about:addons';
-            default:
-                return '#';
-        }
-    };
+    if (bowser.msedge) {
+      return 'edge';
+    }
 
-    _.extensionLink = function (browserName) {
-        browserName = browserName || _.currentBrowser();
+    return 'unknown';
+  };
 
-        switch (browserName) {
-            case 'chrome':
-                return 'https://chrome.google.com/webstore/detail/liber-certificadora/jmafcfholebmbmaclbmdfidkgikmjklo';
-            case 'firefox':
-                return '';
-            case 'edge':
-            default:
-                return '#';
-        }
-    };
+  _.browserDisplayName = function (browserName) {
+    browserName = browserName || _.currentBrowser();
 
-    _.nativeLink = function () {
-        return 'https://certificadora.libercapital.com.br/downloads/nativeapp';
-    };
+    switch (browserName) {
+      case 'chrome':
+        return 'Google Chrome';
+      case 'firefox':
+        return 'Mozilla Firefox';
+      default:
+        return 'Unknown';
+    }
+  };
 
-    _.supportLink = function () {
-        return 'https://certificadora.libercapital.com.br/suporte';
-    };
+  _.extensionPage = function (browserName) {
+    browserName = browserName || _.currentBrowser();
 
-    return _;
+    switch (browserName) {
+      case 'chrome':
+        return 'chrome://extensions';
+      case 'firefox':
+        return 'about:addons';
+      default:
+        return '#';
+    }
+  };
+
+  _.extensionLink = function (browserName) {
+    browserName = browserName || _.currentBrowser();
+
+    switch (browserName) {
+      case 'chrome':
+        return 'https://chrome.google.com/webstore/detail/liber-certificadora/jmafcfholebmbmaclbmdfidkgikmjklo';
+      case 'firefox':
+        return 'https://addons.mozilla.org/en-US/firefox/addon/assina-me/';
+      default:
+        return '#';
+    }
+  };
+
+  _.nativeLink = function (OSName) {
+    OSName = OSName || _.currentOS();
+
+    switch (OSName) {
+      case 'windows':
+        return 'https://s3.amazonaws.com/liber-certificadora-files/assina-me.exe';
+      case 'mac':
+        return 'https://s3.amazonaws.com/liber-certificadora-files/assina-me.pkg';
+      default:
+        return '#';
+    }
+  };
+
+  _.supportLink = function () {
+    return 'https://certificadora.libercapital.com.br/suporte';
+  };
+
+  return _;
 }(bowserjs.default));
 
 export default Utils;
