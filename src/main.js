@@ -58,9 +58,10 @@ var SDK = (function (Utils, Support) {
         return;
       }
 
+      hasExtension = true;
+
       // check if library's major version is at least 0
       if (window.AssinaMeExtension.version.MAJOR < 0) {
-        hasExtension = true;
         status = _.STATES.EXTENSION_MAJOR;
         reject(new Error('Extension major version is not supported'));
 
@@ -69,7 +70,6 @@ var SDK = (function (Utils, Support) {
 
       // check if library's minor version is at least 1
       if (window.AssinaMeExtension.version.MINOR < 1) {
-        hasExtension = true;
         status = _.STATES.EXTENSION_MINOR;
         reject(new Error('Extension minor version is not supported'));
 
