@@ -2,7 +2,7 @@
     "name": "assiname-sdk-js",
     "version": "0.1.1",
     "description": "Assina.me",
-    "main": "build/assiname-sdk.min.js",
+    "main": "src/main.js",
     "scripts": {
         "dev": "cross-env NODE_ENV=development rollup -c --watch",
         "build": "cross-env NODE_ENV=production rollup -c",
