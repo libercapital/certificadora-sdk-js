@@ -1,4 +1,5 @@
-import * as bowserjs from '../node_modules/bowser/bowser.js';
+// import * as bowserjs from '../node_modules/bowser/bowser.js';
+import bowser from 'bowser';
 
 var Utils = (function (bowser) {
   'use strict';
@@ -21,14 +22,14 @@ var Utils = (function (bowser) {
     platformName = platformName || _.currentPlatform();
 
     switch (platformName) {
-      case 'mobile':
-        return 'Mobile';
-      case 'tablet':
-        return 'Tablet';
-      case 'computer':
-        return 'Computer';
-      default:
-        return 'Unknown';
+    case 'mobile':
+      return 'Mobile';
+    case 'tablet':
+      return 'Tablet';
+    case 'computer':
+      return 'Computer';
+    default:
+      return 'Unknown';
     }
   };
 
@@ -52,14 +53,14 @@ var Utils = (function (bowser) {
     OSName = OSName || _.currentOS();
 
     switch (OSName) {
-      case 'windows':
-        return 'Microsoft Windows';
-      case 'mac':
-        return 'macOS';
-      case 'linux':
-        return 'Linux';
-      default:
-        return 'Unknown';
+    case 'windows':
+      return 'Microsoft Windows';
+    case 'mac':
+      return 'macOS';
+    case 'linux':
+      return 'Linux';
+    default:
+      return 'Unknown';
     }
   };
 
@@ -83,12 +84,12 @@ var Utils = (function (bowser) {
     browserName = browserName || _.currentBrowser();
 
     switch (browserName) {
-      case 'chrome':
-        return 'Google Chrome';
-      case 'firefox':
-        return 'Mozilla Firefox';
-      default:
-        return 'Unknown';
+    case 'chrome':
+      return 'Google Chrome';
+    case 'firefox':
+      return 'Mozilla Firefox';
+    default:
+      return 'Unknown';
     }
   };
 
@@ -96,12 +97,12 @@ var Utils = (function (bowser) {
     browserName = browserName || _.currentBrowser();
 
     switch (browserName) {
-      case 'chrome':
-        return 'chrome://extensions';
-      case 'firefox':
-        return 'about:addons';
-      default:
-        return '#';
+    case 'chrome':
+      return 'chrome://extensions';
+    case 'firefox':
+      return 'about:addons';
+    default:
+      return '#';
     }
   };
 
@@ -109,12 +110,12 @@ var Utils = (function (bowser) {
     browserName = browserName || _.currentBrowser();
 
     switch (browserName) {
-      case 'chrome':
-        return 'https://chrome.google.com/webstore/detail/liber-certificadora/jmafcfholebmbmaclbmdfidkgikmjklo';
-      case 'firefox':
-        return 'https://addons.mozilla.org/en-US/firefox/addon/assina-me/';
-      default:
-        return '#';
+    case 'chrome':
+      return 'https://chrome.google.com/webstore/detail/liber-certificadora/jmafcfholebmbmaclbmdfidkgikmjklo';
+    case 'firefox':
+      return 'https://addons.mozilla.org/en-US/firefox/addon/assina-me/';
+    default:
+      return '#';
     }
   };
 
@@ -122,12 +123,12 @@ var Utils = (function (bowser) {
     OSName = OSName || _.currentOS();
 
     switch (OSName) {
-      case 'windows':
-        return 'https://s3.amazonaws.com/liber-certificadora-files/assina-me.exe';
-      case 'mac':
-        return 'https://s3.amazonaws.com/liber-certificadora-files/assina-me.pkg';
-      default:
-        return '#';
+    case 'windows':
+      return 'https://s3.amazonaws.com/liber-certificadora-files/assina-me.exe';
+    case 'mac':
+      return 'https://s3.amazonaws.com/liber-certificadora-files/assina-me.pkg';
+    default:
+      return '#';
     }
   };
 
@@ -136,6 +137,6 @@ var Utils = (function (bowser) {
   };
 
   return _;
-}(bowserjs.default));
+}(bowser));
 
 export default Utils;
