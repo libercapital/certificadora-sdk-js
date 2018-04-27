@@ -2,21 +2,37 @@
     "name": "assiname-sdk-js",
     "version": "0.1.1",
     "description": "Assina.me",
-    "main": "src/main.js",
+    "main": "dist/main.js",
     "scripts": {
         "dev": "cross-env NODE_ENV=development rollup -c --watch",
         "build": "cross-env NODE_ENV=production rollup -c",
-        "test": "echo \"Error: no test specified\" && exit 1"
+        "dist": "cross-env NODE_ENV=production babel src --out-dir dist --presets=env",
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "commit": "yarn git-cz",
+        "precommit": "yarn dist && git add dist/"
     },
     "repository": {
         "type": "git",
-        "url": "git+ssh://git@gitlab.com:libercapital/certificadora-sdk-js.git"
+        "url": "git+ssh://git@github.com:libercapital/certificadora-sdk-js.git"
     },
     "devDependencies": {
+        "babel": "^6.23.0",
+        "babel-cli": "^6.26.0",
         "babel-core": "^6.26.0",
+        "babel-eslint": "^8.2.2",
+        "babel-jest": "^23.0.0-alpha.0",
+        "babel-loader": "^7.1.4",
         "babel-plugin-external-helpers": "^6.22.0",
+        "babel-plugin-module-resolver": "^3.1.1",
+        "babel-plugin-styled-components": "^1.5.1",
+        "babel-plugin-transform-class-properties": "^6.24.1",
+        "babel-plugin-transform-object-rest-spread": "^6.26.0",
+        "babel-plugin-transform-react-jsx": "^6.24.1",
+        "babel-preset-env": "^1.6.1",
         "babel-preset-latest": "^6.24.1",
+        "commitizen": "^2.9.6",
         "cross-env": "^5.1.1",
+        "cz-conventional-changelog": "^2.1.0",
         "npm-run-all": "^4.1.2",
         "rollup-plugin-babel": "^3.0.2",
         "rollup-plugin-commonjs": "^8.2.6",
@@ -30,5 +46,10 @@
     "dependencies": {
         "bowser": "^1.8.1",
         "promise": "^8.0.1"
-    }
+    },
+    "config": {
+        "commitizen": {
+          "path": "node_modules/cz-conventional-changelog"
+        }
+      }
 }
