@@ -6,11 +6,13 @@ Object.defineProperty(exports, "__esModule", {
 
 var _utils = require('./utils.js');
 
-var _utils2 = babelHelpers.interopRequireDefault(_utils);
+var _utils2 = _interopRequireDefault(_utils);
 
 var _support = require('./support.js');
 
-var _support2 = babelHelpers.interopRequireDefault(_support);
+var _support2 = _interopRequireDefault(_support);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /*
  * http://jscc.info/
