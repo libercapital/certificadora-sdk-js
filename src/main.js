@@ -53,7 +53,9 @@ var SDK = (function (Utils, Support) {
       if (typeof window.AssinaMeExtension === 'undefined') {
         hasExtension = false;
         status = _.STATES.EXTENSION_MISSING;
-        reject(new Error('Extension is missing'));
+        var err = new Error('Extension is missing');
+        err.code = 0x1001;
+        reject(err);
 
         return;
       }
@@ -63,7 +65,9 @@ var SDK = (function (Utils, Support) {
       // check if library's major version is at least 0
       if (window.AssinaMeExtension.version.MAJOR < 0) {
         status = _.STATES.EXTENSION_MAJOR;
-        reject(new Error('Extension major version is not supported'));
+        var err = new Error('Extension major version is not supported');
+        err.code = 0x1002;
+        reject(err);
 
         return;
       }
@@ -71,7 +75,9 @@ var SDK = (function (Utils, Support) {
       // check if library's minor version is at least 1
       if (window.AssinaMeExtension.version.MINOR < 1) {
         status = _.STATES.EXTENSION_MINOR;
-        reject(new Error('Extension minor version is not supported'));
+        var err = new Error('Extension minor version is not supported');
+        err.code = 0x1003;
+        reject(err);
 
         return;
       }
@@ -92,7 +98,9 @@ var SDK = (function (Utils, Support) {
       if (typeof window.AssinaMeExtension === 'undefined') {
         hasExtension = false;
         status = _.STATES.EXTENSION_MISSING;
-        reject(new Error('Extension is missing'));
+        var err = new Error('Extension is missing');
+        err.code = 0x1001;
+        reject(err);
 
         return;
       }
@@ -104,7 +112,9 @@ var SDK = (function (Utils, Support) {
           // check if native's major version is at least 0
           if (response.MAJOR < 0) {
             status = _.STATES.NATIVE_MAJOR;
-            reject(new Error('Native App major version is not supported'));
+            var err = new Error('Native App major version is not supported');
+            err.code = 0x1005;
+            reject(err);
 
             return;
           }
@@ -112,7 +122,9 @@ var SDK = (function (Utils, Support) {
           // check if native's minor version is at least 1
           if (response.MINOR < 1) {
             status = _.STATES.NATIVE_MINOR;
-            reject(new Error('Native App minor version is not supported'));
+            var err = new Error('Native App minor version is not supported');
+            err.code = 0x1006;
+            reject(err);
 
             return;
           }
@@ -123,7 +135,9 @@ var SDK = (function (Utils, Support) {
         function () {
           hasNative = false;
           status = _.STATES.NATIVE_MISSING;
-          reject(new Error('Native App is missing'));
+          var err = new Error('Native App is missing');
+          err.code = 0x1004;
+          reject(err);
         }
       );
     });

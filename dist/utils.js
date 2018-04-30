@@ -10,6 +10,7 @@ var _bowser2 = _interopRequireDefault(_bowser);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+
 var Utils = function (bowser) {
   'use strict';
 
