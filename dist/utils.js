@@ -6,7 +6,10 @@ Object.defineProperty(exports, "__esModule", {
 
 var _bowser = require('bowser');
 
-var _bowser2 = babelHelpers.interopRequireDefault(_bowser);
+var _bowser2 = _interopRequireDefault(_bowser);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 
 var Utils = function (bowser) {
   'use strict';
