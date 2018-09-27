@@ -77,6 +77,10 @@ var Utils = (function (bowser) {
       return 'edge';
     }
 
+    if (bowser.safari){
+      return 'safari';
+    }
+
     return 'unknown';
   };
 
@@ -90,6 +94,8 @@ var Utils = (function (bowser) {
       return 'Mozilla Firefox';
     case 'edge':
       return 'Microsoft Edge';
+    case 'safari':
+      return 'Apple Safari';
     default:
       return 'Unknown';
     }
