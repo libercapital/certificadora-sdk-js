@@ -88,6 +88,8 @@ var Utils = (function (bowser) {
       return 'Google Chrome';
     case 'firefox':
       return 'Mozilla Firefox';
+    case 'edge':
+      return 'Microsoft Edge';
     default:
       return 'Unknown';
     }
