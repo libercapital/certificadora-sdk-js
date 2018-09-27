@@ -10,7 +10,6 @@ var _bowser2 = _interopRequireDefault(_bowser);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-
 var Utils = function (bowser) {
   'use strict';
 
@@ -98,6 +97,8 @@ var Utils = function (bowser) {
         return 'Google Chrome';
       case 'firefox':
         return 'Mozilla Firefox';
+      case 'edge':
+        return 'Microsoft Edge';
       default:
         return 'Unknown';
     }
